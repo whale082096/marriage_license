@@ -1,0 +1,50 @@
+---
+title: "My title"
+author: 
+  - First author
+  - Another author
+date: today
+date-format: long
+abstract: "First sentence. Second sentence. Third sentence. Fourth sentence."
+format: pdf
+number-sections: true
+bibliography: references.bib
+---
+
+```{r}
+#| include: false
+#| warning: false
+#| message: false
+
+library(tidyverse)
+```
+
+# Data {#sec-data}
+
+```{r}
+#| label: fig-bills
+#| fig-cap: Bills of penguins
+#| echo: false
+cleaned_data <-
+  read_csv(
+    file = here::here("data", "analysis_data", "analysis_data.csv"),
+    show_col_types = FALSE
+  )
+
+ggplot(penguins, aes(x = island, fill = species)) +
+  geom_bar(alpha = 0.8) +
+  scale_fill_manual(values = c("darkorange","purple","cyan4"),
+                    guide = "none") +
+  theme_minimal() +
+  facet_wrap(~species, ncol = 1) +
+  coord_flip()
+```
+
+Talk more about it. and also planes (@fig-bills). 
+
+\newpage
+
+
+# References
+
+
